@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\admin\loginController;
 use App\Http\Controllers\admin\categoryController;
 use App\Http\Controllers\admin\brandController;
+use App\Http\Controllers\admin\productController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,14 @@ Route::get('/logo_out',[loginController::class,'logo_out']);
 
 Route::group(['middleware'=>['authenticCheck']],function(){
     Route::get('/dashboard',[dashboardController::class,'dashboard']);
+
     Route::get('/category',[categoryController::class,'category']);
     Route::post('/add-category',[categoryController::class,'addCategory']);
+    Route::get('/delete-category/{id}',[categoryController::class,'deleteCategory']);
+
     Route::get('/brand',[brandController::class,'brand']);
     Route::post('/add-brand',[brandController::class,'addBrand']);
+    Route::get('/delete-brand/{id}',[brandController::class,'deleteBrand']);
+
+    Route::get('/product',[productController::class,'product']);
 });

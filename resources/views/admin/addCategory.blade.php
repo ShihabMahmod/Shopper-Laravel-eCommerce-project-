@@ -14,7 +14,7 @@
           <h5>Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="{{url('/add-category')}}" method="POST" class="form-horizontal">
+          <form method="POST" action="{{url('/add-category')}}"  class="form-horizontal">
             @csrf
             <div class="control-group">
               <label class="control-label">Category Name :</label>
@@ -31,57 +31,31 @@
     </div>
     <div class="span6">
       <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>List of category</h5>
-        </div>
         <div class="widget-content nopadding">
         <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5>Static table</h5>
+            <h5>Category List</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>Serial No.</th>
+                  <th>category Name</th>
+                  <th>Category Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="odd gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center"> 4</td>
-                  <td class="center">X</td>
-                </tr>
-                <tr class="even gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                  <td class="center">C</td>
-                </tr>
-                <tr class="odd gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td class="center">5.5</td>
-                  <td class="center">A</td>
-                </tr>
-                <tr class="even gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td class="center">6</td>
-                  <td class="center">A</td>
-                </tr>
+              @foreach($category as $categories)
+              <tr class="even gradeA">
+                  <td>{{$categories->id}}</td>
+                  <td>{{$categories->category_name}}</td>
+                  <td>{{$categories->category_status}}</td>
+                  <td>
+                    <a class="btn btn-mini btn-danger" href="/delete-category/{{$categories->id}}">Delete</a>
+                  </td>
+              </tr>
+              @endforeach
               </tbody>
             </table>
           </div>

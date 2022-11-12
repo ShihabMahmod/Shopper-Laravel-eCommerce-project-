@@ -10,20 +10,37 @@ class brandController extends Controller
 {
     public function brand()
     {
-        return  view('admin.addBrand');
+        $brand = new brand;
+        $result = $brand->all();
+
+        return  view('admin.addBrand',['brands'=>$result]);
     }
     public function addBrand(Request $req)
     {
-        $brabd = new brand;
+        $brand = new brand;
 
-        $brand_name = $req->brand_name;
-        $brand_status = 1;
+        $brand->brand_name = $req->input('brand_name');
+        $brand->brand_status = 1;
+        $result = $brand->save();
+        $brandList = $brand->all();
 
-        $resul = $brabd->save();
-
-        if($resul){
-            return redirect('/add-brand');
+        if($result){
+            return view('admin.addBrand',['result'=>'Brand inserted successfully','brands'=>$brandList]);
         }
-
+        else{
+            return "Somthing is wrong";
+        }
+    }
+    public function deleteBrand($id)
+    {
+        $brand = new brand;
+        $result = $brand->where('id',$id)->delete();
+        if($result)
+        {
+            return view('admin.addBrand');
+        }
+        else{
+            return "Error";
+        }
     }
 }
