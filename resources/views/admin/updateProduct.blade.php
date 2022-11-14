@@ -14,12 +14,13 @@
           <h5>Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
+          @foreach($productList as $products)
           <form action="{{url('/add-product')}}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
             @csrf
             <div class="control-group">
               <label class="control-label">Product Name :</label>
               <div class="controls">
-                <input type="text" class="span11" name="product_name" placeholder="Product name" />
+                <input type="text" value="{{$products->product_name}}" class="span11" name="product_name" placeholder="Product name" />
               </div>
             </div>
             <div class="control-group">
@@ -97,6 +98,7 @@
               <button type="submit" class="btn btn-success">Save</button>
             </div>
           </form>
+          @endforeach
         </div>
       </div>
     </div>
@@ -137,7 +139,7 @@
                   <td><img width="100" height="100" src="{{asset($productList->product_image)}}" /></td>
                   <td>
                     <a href="/delete-product/{{$productList->id}}" class="btn btn-mini btn-danger" >Delete</a>
-                    <a href="/update-product/{{$productList->id}}" class="btn btn-mini btn-info" >Update</a>
+                    <a href="/edit-brand/{{$productList->id}}" class="btn btn-mini btn-info" >Update</a>
                   </td>
                 </tr>
               @endforeach

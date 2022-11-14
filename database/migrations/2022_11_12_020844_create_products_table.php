@@ -16,20 +16,19 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            $table->string('product_category');
-            $table->string('product_brand');
             $table->decimal('product_reguler_price');
             $table->decimal('product_sale_price')->nullable();
-            $table->integer('product_quantity');
+            $table->unsignedInteger('product_quantity')->default(10);
             $table->string('product_attribute')->nullable();
             $table->text('product_short_description',250)->nullable();
             $table->longText('product_logn_description')->nullable();
             $table->string('product_image')->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->string('product_images')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
-            $table->boolean('product_status')->default(1);
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }

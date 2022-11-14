@@ -53,4 +53,6 @@ Route::group(['middleware'=>['authenticCheck']],function(){
     Route::get('/delete-brand/{id}',[brandController::class,'deleteBrand']);
 
     Route::get('/product',[productController::class,'product']);
+    Route::post('/add-product',[productController::class,'addProduct']);
+    Route::get('/update-product/{id}',[productController::class,'updateProduct']);
 });
