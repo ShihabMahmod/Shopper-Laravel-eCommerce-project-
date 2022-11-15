@@ -5,7 +5,7 @@ namespace App\Models\admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\admin\category;
-use App\Models\admin\brand;
+use App\Models\brand;
 
 class product extends Model
 {
@@ -13,10 +13,15 @@ class product extends Model
 
     protected $primaryKey = "id";
 
-    public function getData()
+    public function getCategory()
     {
-        return $this->hasMany(category::class,'id','category_id');
-        //return $this->hasMany(brand::class,'id','brand_id');
+        return $this->hasOne(category::class,'id','category_id');
+      
+    }
+    public function getbrand()
+    {
+        return $this->hasOne(brand::class,'id','brand_id');
+      
     }
 
     protected $fillable=[

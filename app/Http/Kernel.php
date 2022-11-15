@@ -44,7 +44,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
         'authenticCheck'=>[
-            \App\Http\Middleware\loginMiddleware::class,
+            \App\Http\Middleware\loginMiddleware::class
+        ],
+        'userAuthentication'=>[
+            \App\Http\Middleware\user\userMiddleware::class
         ]
     ];
 

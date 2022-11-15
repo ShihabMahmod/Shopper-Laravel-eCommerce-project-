@@ -14,8 +14,8 @@
           <h5>Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
-          @foreach($productList as $products)
-          <form action="{{url('/add-product')}}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
+          @foreach($productData as $products)
+          <form action="{{url('/updated-product')}}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
             @csrf
             <div class="control-group">
               <label class="control-label">Product Name :</label>
@@ -26,45 +26,45 @@
             <div class="control-group">
               <label class="control-label">Regular Price:</label>
               <div class="controls">
-                <input type="text" class="span11" name="product_reguler_price" placeholder="Regular Price" />
+                <input type="text" value="{{$products->product_reguler_price}}" class="span11" name="product_reguler_price" placeholder="Regular Price" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Sale Price :</label>
               <div class="controls">
-                <input type="text" class="span11" name="product_sale_price" placeholder="Sale Price" />
+                <input type="text" value="{{$products->product_sale_price}}" class="span11" name="product_sale_price" placeholder="Sale Price" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Short Decipion :</label>
               <div class="controls">
-                <textarea type="text" class="span11" rows="6" name="product_short_description" placeholder="Short Description"></textarea>
+                <textarea type="text"  class="span11" rows="6" name="product_short_description" placeholder="Short Description">{{$products->product_short_description}}</textarea>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Logn Description :</label>
               <div class="controls">
-                <textarea type="text" class="span11" rows="8" name="product_long_description" placeholder="Long description"></textarea>
+                <textarea type="text"  class="span11" rows="8" name="product_long_description" placeholder="Long description">{{$products->product_logn_description}}</textarea>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Quantity :</label>
               <div class="controls">
-                <input type="text" class="span11" name="product_quantity" placeholder="Quantity" />
+                <input type="text" value= "{{$products->product_quantity}}" class="span11" name="product_quantity" placeholder="Quantity" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Product Attribute :</label>
               <div class="controls">
-                <textarea type="text" class="span11" name="product_attribute" rows="4" placeholder="Product attribute" ></textarea>
+                <textarea type="text" class="span11" name="product_attribute" rows="4" placeholder="Product attribute" >{{$products->product_attribute}}</textarea>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Product Category :</label>
               <div class="controls">
                   <select name="category_id">
-                    @foreach($categoryList as $category)
-                    <option value="{{$category->id}}" >{{$category->category_name}}</option>
+                    @foreach($categoryList as $categories)
+                      <option value="{{$categories->category_id}}" >{{$categories->category_name}}</option>
                     @endforeach
                   </select>
               </div>
@@ -72,11 +72,17 @@
             <div class="control-group">
               <label class="control-label">Product Brand :</label>
               <div class="controls">
-                  <select name="brand_id">
-                    @foreach($brandList as $brand)
-                    <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                  <select name="brand_id">           
+                    @foreach($brandList as $brands)
+                        <option value="{{$brands->brand_id}}">{{$brands->brand_name}}</option>
                     @endforeach
                   </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Product Image :</label>
+              <div class="controls">
+                  <img src="{{asset($products->product_image)}}" width="200" height="200" />
               </div>
             </div>
             <div class="control-group">
@@ -95,7 +101,7 @@
               </div>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-success">Save</button>
+              <button type="submit" class="btn btn-success">Update</button>
             </div>
           </form>
           @endforeach
@@ -139,7 +145,7 @@
                   <td><img width="100" height="100" src="{{asset($productList->product_image)}}" /></td>
                   <td>
                     <a href="/delete-product/{{$productList->id}}" class="btn btn-mini btn-danger" >Delete</a>
-                    <a href="/edit-brand/{{$productList->id}}" class="btn btn-mini btn-info" >Update</a>
+                    <a href="/update-product/{{$productList->id}}" class="btn btn-mini btn-info" >Update</a>
                   </td>
                 </tr>
               @endforeach

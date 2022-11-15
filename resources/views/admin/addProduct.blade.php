@@ -125,7 +125,13 @@
                 <tr class="odd gradeX">
                   <td>{{$productList->product_name}}</td>
                   <td>{{$productList->product_reguler_price}}</td>
-                  <td>{{$productList->product_sale_price}}</td>
+                  <td>
+                    @if($productList->product_sale_price)
+                      <strong>{{$productList->product_sale_price}}</strong>
+                    @else
+                        <strong>N/A</strong> 
+                    @endif    
+                  </td>
                   <td>{{$productList->product_quantity}}</td>
                   <td>
                     @if($productList->featured==0)

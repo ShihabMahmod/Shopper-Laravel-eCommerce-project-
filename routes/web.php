@@ -5,8 +5,9 @@ use App\Http\Controllers\user\homeController;
 use App\Http\Controllers\user\shopController;
 use App\Http\Controllers\user\cartController;
 use App\Http\Controllers\user\checkouttController;
-use App\http\Controllers\user\contactController;
-use App\http\Controllers\user\aboutController;
+use App\Http\Controllers\user\contactController;
+use App\Http\Controllers\user\aboutController;
+use App\Http\Controllers\user\userDataController;
 
 
 
@@ -33,6 +34,14 @@ Route::get('/cart',[cartController::class,'cart']);
 Route::get('/checkout',[checkouttController::class,'checkout']);
 Route::get('/contact',[contactController::class,'contact']);
 Route::get('/about',[aboutController::class,'about']);
+Route::group(['middleware'=>['userAuthentication']],function(){
+    Route::get('/login',[userDataController::class,'login']);
+    Route::get('/register',[userDataController::class,'register']);
+    Route::post('/create-account',[userDataController::class,'createAccount']);
+});
+Route::get('/product-details/{id}',[homeController::class,'productDetails']);
+
+Route::post('/add-cart/{id}',[cartController::class,'addCart']);
 
 
 
@@ -55,4 +64,5 @@ Route::group(['middleware'=>['authenticCheck']],function(){
     Route::get('/product',[productController::class,'product']);
     Route::post('/add-product',[productController::class,'addProduct']);
     Route::get('/update-product/{id}',[productController::class,'updateProduct']);
+    Route::post('/updated-product',[productController::class,'updatedProduct']);
 });

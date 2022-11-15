@@ -37,7 +37,7 @@ class brandController extends Controller
         $result = $brand->where('id',$id)->delete();
         if($result)
         {
-            return view('admin.addBrand');
+            return redirect('/brand');
         }
         else{
             return "Error";
