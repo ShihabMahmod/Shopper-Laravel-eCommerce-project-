@@ -17,6 +17,23 @@ class userDataController extends Controller
     {
         return view('user.register');
     }
+    public function userLogdin(Request $req)
+    {
+        $user = new customer;
+
+        $email    = $req->email;
+        $password = $req->password;
+
+        $user_data = $user::where('email',$email)->get()->first();
+
+        if($user_data && $user_data->password === $password)
+        {
+            Session()->put('user_name',$req->name);
+                Session()->put('user_email',$req->email);
+                Session()->put('user_password',$req->password);
+                return redirect('/');
+        }
+    }
     public function createAccount(Request $req)
     {
         $user = new customer;
@@ -30,11 +47,16 @@ class userDataController extends Controller
             $user->password = $password;
             $result = $user->save();
             if($result){
-                $req->session()->put('user_name',$name);
-                $req->session()->put('user_email',$email);
-                $req->session()->put('user_password',$password);
+                Session()->put('user_name',$req->name);
+                Session()->put('user_email',$req->email);
+                Session()->put('user_password',$req->password);
                 return redirect('/');
             }
         }
+    }
+    public function userLogOut()
+    {
+        Session::flush();
+        return redirect('/');
     }
 }

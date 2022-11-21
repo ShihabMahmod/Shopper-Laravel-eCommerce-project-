@@ -62,15 +62,15 @@ class productController extends Controller
         $data = $product::join('categories','categories.id', "=" , 'products.category_id')
                 ->join('brands','brands.id', "=" , 'products.brand_id')
                 ->where('products.id',$id)
-                ->get(['products.*','categories.id','categories.category_name','brands.id','brands.brand_name']);
+                ->get(['products.*','categories.id as catId','categories.category_name','brands.id as brandId','brands.brand_name']);
 
         return view('admin.updateProduct',['productData' => $data,'productList' => $productList,'categoryList'=>$categoryList,'brandList'=>$brandList]);
 
     }
-    public function updatedProduct(Request $req)
+    public function updatedSelectedProduct(Request $req,$id)
     {
         $products = new product;
-        $product = $products::find($req->id);
+        $product = $products::find($id);
 
         $product->product_name = $req->input('product_name');
         $product->product_reguler_price = $req->input('product_reguler_price');
@@ -79,16 +79,67 @@ class productController extends Controller
         $product->product_attribute = $req->input('product_attribute');
         $product->product_short_description = $req->input('product_short_description');
         $product->product_logn_description = $req->input('product_long_description');
-        $product->product_image = $req->file('product_image')->store('uploads');
+        if($req->file('product_image'))
+        {
+            $product->product_image = $req->file('product_image')->store('uploads');
+        }else{
+            $product->product_image = $product->product_image;
+        }
         $product->category_id =$req->input('category_id');
         $product->brand_id = $req->input('brand_id');
         $product->featured = $req->input('featured');
 
-        $result = $product->save();
+        $result = $product->update();
         
         if($result)
         {
-            return redirect('/add-product');
+            return redirect('/product');
         }
+    }
+    public function imageGalley()
+    {
+        $product = new product;
+        $productList  = $product::all();
+        
+        return view('admin.productImages',['productList'=>$productList]);
+    }
+    public function updateProductImages($id)
+    {
+        $product = new product;
+        $selected_product = $product::find($id);
+
+        $productList  = $product::all();
+
+        return view('admin.updateProductImages',['productList'=>$productList,'selectProduct'=>$selected_product]);
+    }
+    public function updatSelectedProductImages($id)
+    {
+        $products = new product;
+        $product = $products::find($id);
+
+        $product->product_name = $req->input('product_name');
+        $product->product_reguler_price = $req->input('product_reguler_price');
+        $product->product_sale_price = $req->input('product_sale_price');
+        $product->product_quantity = $req->input('product_quantity');
+        $product->product_attribute = $req->input('product_attribute');
+        $product->product_short_description = $req->input('product_short_description');
+        $product->product_logn_description = $req->input('product_long_description');
+        if($req->file('product_image'))
+        {
+            $product->product_image = $req->file('product_image')->store('uploads');
+        }else{
+            $product->product_image = $product->product_image;
+        }
+        $product->category_id =$req->input('category_id');
+        $product->brand_id = $req->input('brand_id');
+        $product->featured = $req->input('featured');
+
+        $result = $product->update();
+        
+        if($result)
+        {
+            return redirect('/product');
+        }
+
     }
 }

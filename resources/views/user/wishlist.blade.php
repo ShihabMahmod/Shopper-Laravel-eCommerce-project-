@@ -6,60 +6,40 @@
 		<div class="container">
 			<div class="wrap-breadcrumb">
 				<ul>
-					<li class="item-link"><a href="/" class="link">home</a></li>
-					<li class="item-link"><span>Cart</span></li>
+					<li class="item-link"><a href="/" class="link">Home</a></li>
+					<li class="item-link"><span>Wishlist</span></li>
 				</ul>
 			</div>
-		<div class=" main-content-area">
+			<div class=" main-content-area">
 
-			@foreach($mycart as $cart)
+			@foreach($myWishlist as $wishlist)
 			<div class="wrap-iten-in-cart">
 					<h3 class="box-title">Products Name</h3>
 					<ul class="products-cart">
 						<li class="pr-cart-item">
 							<div class="product-image">
-								<figure><img src="{{asset($cart->product_image)}}" alt=""></figure>
+								<figure><img src="{{asset($wishlist->product_image)}}" alt=""></figure>
 							</div>
 							<div class="product-name">
-								<a class="{{url('/product-details/'.$cart->product_id)}}" href="#">{{$cart->product_name}}</a>
+								<a class="link-to-product" href="#">{{$wishlist->product_name}}</a>
 							</div>
-							<div class="price-field produtc-price"><p class="price">৳ {{$cart->product_price}}</p></div>
+							<div class="price-field produtc-price"><p class="price">৳ {{$wishlist->product_price}}</p></div>
 							<div class="quantity">
-								<div class="quantity-input">
-									<input type="text" name="product-quatity" value="{{$cart->product_quantity}}" data-max="120" pattern="[0-9]*" >									
-									<a class="btn btn-increase" href="#"></a>
-									<a class="btn btn-reduce" href="#"></a>
+								<div >
+									<a href="{{url('/add-to-cart-from-wishlist/'.$wishlist->product_id)}}"><i class="fa fa-2x fa-cart-plus" aria-hidden="true"></i></a>
 								</div>
 							</div>
-							<div class="price-field sub-total"><p class="price">৳ {{$cart->product_price*$cart->product_quantity}}</p></div>
 							<div class="delete">
-								<a href="delete-from-cart/{{$cart->id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+								<a href="delete-from-wishlist/{{$wishlist->id}}"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
 							</div>
+							
 						</li>
 																	
 					</ul>
-			</div>
+				</div>
 			@endforeach
 
-				<div class="summary">
-					<div class="order-summary">
-						<h4 class="title-box">Order Summary</h4>
-						<p class="summary-info"><span class="title">Subtotal</span><b class="index">৳ {{$total_price}}</b></p>
-						<p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-						<p class="summary-info total-info "><span class="title">Total</span><b class="index">৳ {{$total_price}}</b></p>
-					</div>
-					<div class="checkout-info">
-						<label class="checkbox-field">
-							<input class="frm-input " name="have-code" id="have-code" value="" type="checkbox"><span>I have promo code</span>
-						</label>
-						<a class="btn btn-checkout" href="/checkout">Check out</a>
-						<a class="link-to-shop" href="shop.html">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-					</div>
-					<div class="update-clear">
-						<a class="btn btn-clear" href="{{url('/clear-cart')}}">Clear Shopping Cart</a>
-						<a class="btn btn-update" href="#">Update Shopping Cart</a>
-					</div>
-				</div>
+			
 
 				<div class="wrap-show-advance-info-box style-1 box-in-site">
 					<h3 class="title-box">Most Viewed Products</h3>

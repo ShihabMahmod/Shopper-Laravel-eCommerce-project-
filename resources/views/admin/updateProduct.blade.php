@@ -3,7 +3,7 @@
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"> <a href="/dashboard" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="{{url('/product')}}" class="tip-bottom">Add Product </a></div>
-  <h1>Add New Product</h1>
+  <h1>Update Product</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -15,8 +15,9 @@
         </div>
         <div class="widget-content nopadding">
           @foreach($productData as $products)
-          <form action="{{url('/updated-product')}}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
+          <form action="{{url('/updated-selected-product/'.$products->id)}}" method="POST" class="form-horizontal" enctype="multipart/form-data" >
             @csrf
+            @method('PUT')
             <div class="control-group">
               <label class="control-label">Product Name :</label>
               <div class="controls">
@@ -64,7 +65,7 @@
               <div class="controls">
                   <select name="category_id">
                     @foreach($categoryList as $categories)
-                      <option value="{{$categories->category_id}}" >{{$categories->category_name}}</option>
+                      <option value="{{$categories->id}}" >{{$categories->category_name}}</option>
                     @endforeach
                   </select>
               </div>
@@ -74,7 +75,7 @@
               <div class="controls">
                   <select name="brand_id">           
                     @foreach($brandList as $brands)
-                        <option value="{{$brands->brand_id}}">{{$brands->brand_name}}</option>
+                        <option value="{{$brands->id}}">{{$brands->brand_name}}</option>
                     @endforeach
                   </select>
               </div>

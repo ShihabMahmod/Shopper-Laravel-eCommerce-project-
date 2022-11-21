@@ -53,7 +53,8 @@
                       </ul>
                     </div>
                 </div>
-                <form action="{{url('/add-cart',$productDetails->id)}}" mehod="POST">
+                <form action="{{url('/add-cart/'.$productDetails->id)}}" method="POST">
+                @csrf
                 <div class="detail-info">
                     <div class="product-rating">
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -93,10 +94,10 @@
                         </div>
                     </div>
                     <div class="wrap-butons">
-                        <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                        <button class="btn add-to-cart">Add to Cart</button>
                         <div class="wrap-btn">
                             <a href="#" class="btn btn-compare">Add Compare</a>
-                            <a href="#" class="btn btn-wishlist">Add Wishlist</a>
+                            <a href="{{url('/add-wishlist/'.$productDetails->id)}}" class="btn btn-wishlist">Add Wishlist</a>
                         </div>
                     </div>
                 </div>

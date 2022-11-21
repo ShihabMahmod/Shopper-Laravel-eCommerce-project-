@@ -4,11 +4,11 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard2</a>
   <ul>
-    <li ><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li ><a href="/dashboard"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li> <a href="/category"><i class="icon icon-signal"></i> <span>Add Category</span></a> </li>
     <li> <a href="/brand"><i class="icon icon-inbox"></i> <span>Add Brand</span></a> </li>
     <li><a href="/product"><i class="icon icon-th"></i> <span>Add Product</span></a></li>
-    <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
+    <li><a href="image-galley"><i class="icon icon-fullscreen"></i> <span>Add Product Images</span></a></li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
       <ul>
         <li><a href="form-common.html">Basic Form</a></li>

@@ -16,35 +16,35 @@
             <form action="#" method="get" name="frm-billing">
                 <p class="row-in-form">
                     <label for="fname">first name<span>*</span></label>
-                    <input id="fname" type="text" name="fname" value="" placeholder="Your name">
+                    <input id="fname" type="text" id="first_name" name="first_name" value="" placeholder="Your name" required>
                 </p>
                 <p class="row-in-form">
                     <label for="lname">last name<span>*</span></label>
-                    <input id="lname" type="text" name="lname" value="" placeholder="Your last name">
+                    <input id="lname" type="text" id="last_name" name="last_name" value="" placeholder="Your last name">
                 </p>
                 <p class="row-in-form">
                     <label for="email">Email Addreess:</label>
-                    <input id="email" type="email" name="email" value="" placeholder="Type your email">
+                    <input id="email" type="email" id="email" name="email" value="" placeholder="Type your email">
                 </p>
                 <p class="row-in-form">
                     <label for="phone">Phone number<span>*</span></label>
-                    <input id="phone" type="number" name="phone" value="" placeholder="10 digits format">
+                    <input id="phone" type="number" id="phone" name="phone" value="" placeholder="10 digits format">
                 </p>
                 <p class="row-in-form">
                     <label for="add">Address:</label>
-                    <input id="add" type="text" name="add" value="" placeholder="Street at apartment number">
+                    <input id="add" type="text" id="address" name="address" value="" placeholder="Street at apartment number">
                 </p>
                 <p class="row-in-form">
                     <label for="country">Country<span>*</span></label>
-                    <input id="country" type="text" name="country" value="" placeholder="United States">
+                    <input id="country" type="text" id="country" name="country" value="" placeholder="United States">
                 </p>
                 <p class="row-in-form">
                     <label for="zip-code">Postcode / ZIP:</label>
-                    <input id="zip-code" type="number" name="zip-code" value="" placeholder="Your postal code">
+                    <input id="zip-code" type="number" id="zip_code" name="zip_code" value="" placeholder="Your postal code">
                 </p>
                 <p class="row-in-form">
                     <label for="city">Town / City<span>*</span></label>
-                    <input id="city" type="text" name="city" value="" placeholder="City name">
+                    <input id="city" type="text" id="city" name="city" value="" placeholder="City name">
                 </p>
                 <p class="row-in-form fill-wife">
                     <label class="checkbox-field">
@@ -82,12 +82,12 @@
                     </label>
                 </div>
                 <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">$100.00</span></p>
-                <a href="thankyou.html" class="btn btn-medium">Place order now</a>
+                <div id="paypal-button-container"></div>
             </div>
             <div class="summary-item shipping-method">
-                <h4 class="title-box f-title">Shipping method</h4>
-                <p class="summary-info"><span class="title">Flat Rate</span></p>
-                <p class="summary-info"><span class="title">Fixed $50.00</span></p>
+                <h4 class="title-box f-title">Total Amount</h4>
+                <p class="summary-info"><span class="title">৳ {{$total_price}}</span></p>
+                <p class="summary-info"><span class="title">Shipping : free</span></p>
                 <h4 class="title-box">Discount Codes</h4>
                 <p class="row-in-form">
                     <label for="coupon-code">Enter Your Coupon code:</label>
@@ -252,4 +252,34 @@
 
 </main>
 <!--main area-->
+    <script src="https://www.paypal.com/sdk/js?client-id=ATI_4npkKuzndDrUfjqsZuky-SH2gJfJhVssKD90rYYszPumVm6-nU0oKdWgtn7K-XEDSyxO2s7F3rFm&currency=USD"></script>
+        <script>
+        paypal.Buttons({
+          
+           
+
+            createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                amount: {
+                    value: '77.44' // Can also reference a variable or function
+                }
+                }]
+            });
+            },
+            // Finalize the transaction after payer approval
+            onApprove: (data, actions) => {
+            return actions.order.capture().then(function(orderData) {
+                // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                const transaction = orderData.purchase_units[0].payments.captures[0];
+                alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                // When ready to go live, remove the alert and show a success message within this page. For example:
+                // const element = document.getElementById('paypal-button-container');
+                // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+            }
+        }).render('#paypal-button-container');
+        </script>
 @include('user.base.footer');
