@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\admin\product;
 use App\Models\admin\category;
 use App\Models\brand;
+use App\Models\color;
+use App\Models\size;
+use App\Models\subCategory;
+
 
 class productController extends Controller
 {
@@ -15,36 +19,70 @@ class productController extends Controller
         $product = new product;
         $category = new category;
         $brand = new brand;
+        $color = new color;
+        $size  = new size;
+        $subCategory = new subCategory;
 
         $productList  = $product::all();
         $categoryList = $category::all();
         $brandList    = $brand::all();
+        $colorList    = $color::all();
+        $sizeList     = $size::all();
+        $subCategoryList = $subCategory::all();
 
-        return view('admin.addProduct',['productList'=>$productList,'categoryList'=>$categoryList,'brandList'=>$brandList]);
+        return view('admin.addProduct',['productList'=>$productList,'categoryList'=>$categoryList,'brandList'=>$brandList,'colorList'=>$colorList,'sizeList'=>$sizeList,'subCategoryList'=>$subCategoryList]);
     }
     public function addProduct(Request $req)
     {
         $product = new product;
 
+        $color = $req->input('product_color');
+        $product_color = implode(",",$color);
+        $size  = $req->input('product_size');
+        $product_size = implode(",",$size);
+
         $product->product_name = $req->input('product_name');
         $product->product_reguler_price = $req->input('product_reguler_price');
         $product->product_sale_price = $req->input('product_sale_price');
         $product->product_quantity = $req->input('product_quantity');
-        $product->product_attribute = $req->input('product_attribute');
         $product->product_short_description = $req->input('product_short_description');
         $product->product_logn_description = $req->input('product_long_description');
         $product->product_image = $req->file('product_image')->store('uploads');
         $product->category_id =$req->input('category_id');
+        $product->sub_category_id = $req->input('sub_category_id');
         $product->brand_id = $req->input('brand_id');
+        $product->product_color = json_encode($product_color);
+        $product->product_size = json_encode($product_size);
         $product->featured = $req->input('featured');
 
+        $images=array();
+
+        if($files = $req->file('product_images')){
+            $i=0;
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $fileNameExtract=explode('.',$name);
+                $fileName=$fileNameExtract[0];
+                $fileName.=time();
+                $fileName.=$i;
+                $fileName.='.';
+                $fileName.=$fileNameExtract[1];
+
+                $file->move('image',$fileName);
+                $images[]=$fileName;
+                $i++;
+            }
+            $product['product_images'] = implode("|",$images);
+
+        }
+    
         $result = $product->save();
 
         if($result){
-            return redirect('/product');
+            return redirect()->back()->with('message','Product Inserted Susseccfully');
         }
         else{
-            return redirect('/product');
+            return redirect()->back()->with('message','Somthing is wrong');
         }
     }
 
@@ -88,6 +126,29 @@ class productController extends Controller
         $product->category_id =$req->input('category_id');
         $product->brand_id = $req->input('brand_id');
         $product->featured = $req->input('featured');
+
+        $images=array();
+
+        if($files = $req->file('product_images')){
+            $i=0;
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $fileNameExtract=explode('.',$name);
+                $fileName=$fileNameExtract[0];
+                $fileName.=time();
+                $fileName.=$i;
+                $fileName.='.';
+                $fileName.=$fileNameExtract[1];
+
+                $file->move('image',$fileName);
+                $images[]=$fileName;
+                $i++;
+            }
+            $product['product_images'] = implode("|",$images);
+
+        }
+    
+
 
         $result = $product->update();
         

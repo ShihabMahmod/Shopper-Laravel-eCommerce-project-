@@ -12,7 +12,7 @@
 
     </head>
     <body>
-        <div id="loginbox">            
+        <div id="loginbox">         
             <form id="loginform" class="form-vertical" action="{{url('/admin-login-try')}}" method="POST">
                 @csrf
 				 <div class="control-group normal_text"> <h3><img src="{{asset('asset/img/logo.png')}}" alt="Logo" /></h3></div>

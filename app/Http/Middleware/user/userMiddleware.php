@@ -16,13 +16,13 @@ class userMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // $email = $request->session()->get('user_email');
-        // $password = $request->session()->get('user_password');
+         $email = $request->session()->get('user_email');
+         $password = $request->session()->get('user_password');
 
-        // if($email && $password)
-        // {
-        //     return redirect('/');
-        // }
+         if(!$email && !$password)
+         {
+             return redirect('/login');
+         }
 
         return $next($request);
     }

@@ -53,17 +53,21 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Product Attribute :</label>
-              <div class="controls">
-                <textarea type="text" class="span11" name="product_attribute" rows="4" placeholder="Product attribute" ></textarea>
-              </div>
-            </div>
-            <div class="control-group">
               <label class="control-label">Product Category :</label>
               <div class="controls">
                   <select name="category_id">
                     @foreach($categoryList as $category)
                     <option value="{{$category->id}}" >{{$category->category_name}}</option>
+                    @endforeach
+                  </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Product Sub-Category :</label>
+              <div class="controls">
+                  <select name="sub_category_id">
+                    @foreach($subCategoryList as $subCategoryList)
+                    <option value="{{$subCategoryList->id}}" >{{$subCategoryList->sub_category_name}}</option>
                     @endforeach
                   </select>
               </div>
@@ -79,9 +83,35 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label">Product Size :</label>
+              <div class="controls">
+                  <select name="product_size[]" multiple >
+                    @foreach($sizeList as $sizeList)
+                    <option value="{{$sizeList->size_name}}" >{{$sizeList->size_name}}</option>
+                    @endforeach
+                  </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Product color :</label>
+              <div class="controls">
+                  <select name="product_color[]" multiple >
+                    @foreach($colorList as $colorList)
+                    <option value="{{$colorList->name}}" >{{$colorList->name}}</option>
+                    @endforeach
+                  </select>
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label">Product Image</label>
               <div class="controls">
                 <input name="product_image" type="file" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Image Gellery</label>
+              <div class="controls">
+                <input name="product_images[]" type="file" multiple />
               </div>
             </div>
             <div class="control-group">

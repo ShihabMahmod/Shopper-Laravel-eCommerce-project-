@@ -93,6 +93,12 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label">Image Gellery</label>
+              <div class="controls">
+                <input name="product_images[]" type="file" multiple />
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label">Product Status :</label>
               <div class="controls">
                   <select name="featured">   

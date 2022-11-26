@@ -17,4 +17,8 @@ class checkouttController extends Controller
 
         return view('user.checkout',['total_price'=>$total_price]);
     }
+    public function success()
+    {
+        return view('user.success');
+    }
 }

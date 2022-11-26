@@ -1,6 +1,10 @@
 @include('user.base.header');
     <!--main area-->
 	<main id="main" class="main-site">
+                 @php
+                  $productDetails['product_images'] = explode("|",$productDetails->product_images);
+                  $productDetails['product_color']  = explode(",",$productDetails->product_color);
+                 @endphp
 
 <div class="container">
 
@@ -17,38 +21,19 @@
                 <div class="detail-media">
                     <div class="product-gallery">
                       <ul class="slides">
+                
 
+                    @if($productDetails->product_images)
+                    @foreach($productDetails->product_images as $images)
+                        <li data-thumb="{{asset('/image/'.$images)}}">
+                            <img src="{{asset('/image/'.$images)}}" alt="product thumbnail" />
+                        </li>
+                    @endforeach
+                    @else
                         <li data-thumb="{{asset($productDetails->product_image)}}">
                             <img src="{{asset($productDetails->product_image)}}" alt="product thumbnail" />
                         </li>
-
-                        <li data-thumb="assets/images/products/digital_17.jpg">
-                            <img src="assets/images/products/digital_17.jpg" alt="product thumbnail" />
-                        </li>
-
-                        <li data-thumb="assets/images/products/digital_15.jpg">
-                            <img src="assets/images/products/digital_15.jpg" alt="product thumbnail" />
-                        </li>
-
-                        <li data-thumb="assets/images/products/digital_02.jpg">
-                            <img src="assets/images/products/digital_02.jpg" alt="product thumbnail" />
-                        </li>
-
-                        <li data-thumb="assets/images/products/digital_08.jpg">
-                            <img src="assets/images/products/digital_08.jpg" alt="product thumbnail" />
-                        </li>
-
-                        <li data-thumb="assets/images/products/digital_10.jpg">
-                            <img src="assets/images/products/digital_10.jpg" alt="product thumbnail" />
-                        </li>
-
-                        <li data-thumb="assets/images/products/digital_12.jpg">
-                            <img src="assets/images/products/digital_12.jpg" alt="product thumbnail" />
-                        </li>
-
-                        <li data-thumb="assets/images/products/digital_14.jpg">
-                            <img src="assets/images/products/digital_14.jpg" alt="product thumbnail" />
-                        </li>
+                    @endif    
 
                       </ul>
                     </div>
@@ -67,13 +52,18 @@
                     <h2 class="product-name">{{$productDetails->product_name}}</h2>
                     <div class="short-desc">
                         <ul>
-                            <li>Attribute : {{$productDetails->product_attribute}}</li>
+                            <li>Color : 
+                                @foreach($productDetails->product_color as $color)
+                                        {{$color}}
+                                        {{"|"}}
+                                @endforeach
+                            </li>
                             <li>Braand : {{$productDetails->brand_name}}</li>
                             <li>Category : {{$productDetails->category_name}}</li>
                         </ul>
                     </div>
                     <div class="wrap-social">
-                        <a class="link-socail" href="#"><img src="assets/images/social-list.png" alt=""></a>
+                        <a class="link-socail" href="#"><img src="{{asset('assets/images/social-list.png')}}" alt=""></a>
                     </div>
                     <div class="wrap-price"><span class="product-price">৳ {{$productDetails->product_reguler_price}}</span></div>
                     <div class="stock-info in-stock">
@@ -85,16 +75,18 @@
                             @endif    
                         </p>
                     </div>
+                    
                     <div class="quantity">
-                        <span>Quantity:</span>
-                        <div class="quantity-input">
-                            <a class="btn btn-reduce" href="#"></a>
-                            <input type="text" name="product_quatity" value="1" data-max="120" pattern="[0-9]*" >
-                            <a class="btn btn-increase" href="#"></a>
-                        </div>
-                    </div>
+                            	<span>Quantity:</span>
+								<div class="quantity-input">
+									<input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
+									
+									<a class="btn btn-reduce" href="#"></a>
+									<a class="btn btn-increase" href="#"></a>
+								</div>
+							</div>
                     <div class="wrap-butons">
-                        <button class="btn add-to-cart">Add to Cart</button>
+                        <button width="400" class="btn add-to-cart">Add to Cart</button>
                         <div class="wrap-btn">
                             <a href="#" class="btn btn-compare">Add Compare</a>
                             <a href="{{url('/add-wishlist/'.$productDetails->id)}}" class="btn btn-wishlist">Add Wishlist</a>
@@ -113,7 +105,7 @@
                             <p>{{$productDetails->product_short_description}}</p>
                         </div>
                         <div class="tab-content-item " id="add_infomation">
-                            <p>{{$productDetails->product_long_description}}</p>
+                            <p>{{$productDetails->product_logn_description}}</p>
                         </div>
                         <div class="tab-content-item " id="review">
                             

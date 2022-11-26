@@ -82,7 +82,12 @@
                     </label>
                 </div>
                 <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">$100.00</span></p>
-                <div id="paypal-button-container"></div>
+                <button id="sslczPayBtn"
+                    token="if you have any token validation"
+                    postdata=""
+                    order="If you already have the transaction generated for current order"
+                    endpoint="/pay-via-ajax"> Pay Now
+             </button>
             </div>
             <div class="summary-item shipping-method">
                 <h4 class="title-box f-title">Total Amount</h4>
@@ -252,7 +257,12 @@
 
 </main>
 <!--main area-->
-    <script src="https://www.paypal.com/sdk/js?client-id=ATI_4npkKuzndDrUfjqsZuky-SH2gJfJhVssKD90rYYszPumVm6-nU0oKdWgtn7K-XEDSyxO2s7F3rFm&currency=USD"></script>
+
+
+
+
+
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=ATI_4npkKuzndDrUfjqsZuky-SH2gJfJhVssKD90rYYszPumVm6-nU0oKdWgtn7K-XEDSyxO2s7F3rFm&currency=USD"></script>
         <script>
         paypal.Buttons({
           
@@ -281,5 +291,5 @@
             });
             }
         }).render('#paypal-button-container');
-        </script>
+        </script> -->
 @include('user.base.footer');

@@ -32,7 +32,7 @@ class cartController extends Controller
         $cart->user_email	    = $user_email;
         $cart->product_name     = $cartData->product_name;
         $cart->product_price    = $cartData->product_reguler_price;
-        $cart->product_quantity = $req->input('product_quatity');
+        $cart->product_quantity = $req->input('product-quatity');
         $cart->product_image    = $cartData->product_image;
         $cart->product_id       = $cartData->id;
 

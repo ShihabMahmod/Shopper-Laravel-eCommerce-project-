@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('product_reguler_price');
             $table->decimal('product_sale_price')->nullable();
             $table->unsignedInteger('product_quantity')->default(10);
-            $table->string('product_attribute')->nullable();
             $table->text('product_short_description',250)->nullable();
             $table->longText('product_logn_description')->nullable();
             $table->string('product_image')->nullable();
@@ -28,6 +27,10 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->unsignedBigInteger('sub_category_id')->nullable();
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
+            $table->string('product_color')->nullable(); 
+            $table->string('product_size')->nullable();
             $table->boolean('featured')->default(false);
             $table->timestamps();
         });

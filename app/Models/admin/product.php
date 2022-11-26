@@ -28,6 +28,6 @@ class product extends Model
         'product_name',
         'product_reguler_price',
         'product_quantity',
-        
     ];
+    public $timestamps  = false;
 }

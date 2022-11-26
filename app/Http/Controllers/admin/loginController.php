@@ -32,7 +32,7 @@ class loginController extends Controller
             $req->session()->put('adminName',$result->name);
             return redirect('/dashboard');
         }else{
-            return view('admin.login');
+            return redirect('/admin-login')->with('error','Your login info is not correct');
         }
     }
     public function logo_out()
