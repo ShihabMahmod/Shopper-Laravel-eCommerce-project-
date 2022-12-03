@@ -170,7 +170,7 @@
 										</div>
 										<div class="product-info">
 											<a href="#" class="product-name"><span>{{$laptop->product_name}}</span></a>
-											<div class="wrap-price"><ins><p class="product-price">$laptop->product_reguler_price</p></ins> <del><p class="product-price">$laptop->product_sale_price</p></del></div>
+											<div class="wrap-price"><ins><p class="product-price">{{$laptop->product_reguler_price}}</p></ins> <del><p class="product-price">{{$laptop->product_sale_price}}</p></del></div>
 										</div>
 									</div>
 									@endforeach

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_email');
             $table->string('product_name');
             $table->string('product_price');
-            $table->string('product_image');
+            $table->string('product_image')->nullable();
             $table->integer('product_id');
             $table->timestamps();
         });

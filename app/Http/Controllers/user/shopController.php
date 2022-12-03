@@ -7,16 +7,24 @@ use Illuminate\Http\Request;
 use App\Models\admin\product;
 use App\Models\user\cart;
 use App\Models\user\wishlist;
+use App\Models\admin\category;
+use App\Models\subCategory;
+use App\Models\brand;
+
 
 class shopController extends Controller
 {
     public function shop()
     {
         $product = new product;
+        $category = new category;
+        $brand    = new brand;
 
         $productList = $product::all();
+        $categoryList = $category::all();
+        $brandList =$brand::all();
 
-        return view('user.shop',['productList'=>$productList]);
+        return view('user.shop',['productList'=>$productList,'categoryList'=>$categoryList,'brandList'=>$brandList]);
     }
     public function addToCart($id)
     {
@@ -61,5 +69,56 @@ class shopController extends Controller
             $wishlist::where('product_id',$id)->delete();
              return redirect('/cart');
          }
+    }
+    public function productByCategory($id)
+    {
+        $product = new product;
+        $category = new category;
+        $brand = new brand;
+
+        $productList = $product::join('categories','categories.id',"=",'products.category_id')
+                                ->where('category_id',$id)
+                                ->get(['products.*','categories.category_name'])
+                                ->all();
+                            
+
+        $categoryList = $category::all();
+        $brandList = $brand::all();
+
+        return view('user.productByCategory',['productList'=>$productList,'categoryList'=>$categoryList,'brandList'=>$brandList]);                    
+    }
+    public function productBySubCategory($id)
+    {   
+        $product = new product;
+        $category = new category;
+        $brand   = new brand;
+
+        $productList = $product::join('sub_categories','sub_categories.id',"=",'products.sub_category_id')
+                                ->where('sub_category_id',$id)
+                                ->get(['products.*','sub_categories.sub_category_name'])
+                                ->all();
+                            
+
+        $categoryList = $category::all();
+        $brandList = $brand::all();
+
+        return view('user.productBySubCategory',['productList'=>$productList,'categoryList'=>$categoryList,'brandList'=>$brandList]);    
+    }
+    public function productByBrand($id)
+    {
+        $product = new product;
+        $category = new category;
+        $brand   = new brand;
+
+        $productList = $product::join('brands','brands.id',"=",'products.brand_id')
+                                ->where('brand_id',$id)
+                                ->get(['products.*','brands.brand_name'])
+                                ->all();
+                            
+
+        $categoryList = $category::all();
+        $brandList = $brand::all();
+
+        return view('user.productBySubCategory',['productList'=>$productList,'categoryList'=>$categoryList,'brandList'=>$brandList]);    
     }
 }

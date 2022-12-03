@@ -28,6 +28,7 @@ class product extends Model
         'product_name',
         'product_reguler_price',
         'product_quantity',
+        'views'
     ];
     public $timestamps  = false;
 }

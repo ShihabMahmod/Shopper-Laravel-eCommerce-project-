@@ -97,41 +97,19 @@
 						<h2 class="widget-title">All Categories</h2>
 						<div class="widget-content">
 							<ul class="list-category">
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Fashion & Accessories</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Furnitures & Home Decors</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Digital & Electronics</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Tools & Equipments</a>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Kid’s Toys</a>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Organics & Spa</a>
+								@foreach($categoryList as $categoryList)
+									@if($categoryList->subCategory)
+										<li class="category-item has-child-cate">
+										<a href="{{url('/product-by-category/'.$categoryList->id)}}" class="cate-link">{{$categoryList->category_name}}</a>
+										<span class="toggle-control">+</span>
+										<ul class="sub-cate">
+											@foreach($categoryList->subCategory as $subCategoryList)
+												<li class="category-item"><a href="{{url('/product-by-sub-category/'.$subCategoryList->id)}}" class="cate-link">{{$subCategoryList->sub_category_name}}</a></li>
+											@endforeach
+										</ul>
+										</li>
+									@endif
+								@endforeach
 								</li>
 							</ul>
 						</div>
@@ -140,19 +118,14 @@
 					<div class="widget mercado-widget filter-widget brand-widget">
 						<h2 class="widget-title">Brand</h2>
 						<div class="widget-content">
-							<ul class="list-style vertical-list list-limited" data-show="6">
-								<li class="list-item"><a class="filter-link active" href="#">Fashion Clothings</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
-								<li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-								<li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
-							</ul>
+							<ul class="list-category">
+									@foreach($brandList as $brandList)
+											<li class="category-item has-child-cate">
+												<a href="{{url('/product-by-brand/'.$brandList->id)}}" class="cate-link">{{$brandList->brand_name}}</a>
+											</li>
+									@endforeach
+									</li>
+								</ul>
 						</div>
 					</div><!-- brand widget-->
 

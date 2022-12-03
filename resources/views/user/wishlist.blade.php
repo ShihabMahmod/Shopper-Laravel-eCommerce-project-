@@ -26,7 +26,7 @@
 							<div class="price-field produtc-price"><p class="price">৳ {{$wishlist->product_price}}</p></div>
 							<div class="quantity">
 								<div >
-									<a href="{{url('/add-to-cart-from-wishlist/'.$wishlist->product_id)}}"><i class="fa fa-2x fa-cart-plus" aria-hidden="true"></i></a>
+									<a href="{{url('/product-details/'.$wishlist->product_id)}}"><i class="fa fa-2x fa-cart-plus" aria-hidden="true"></i></a>
 								</div>
 							</div>
 							<div class="delete">

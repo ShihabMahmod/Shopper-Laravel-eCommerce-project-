@@ -1,0 +1,10 @@
+{
+    "open sans": {
+        "normal": "E:\\All Project\\Laravel\\Shopper\\storage\\fonts\/open_sans_normal_bdb406a1dd66276a9aa95b5b0dddf1e3",
+        "bold": "E:\\All Project\\Laravel\\Shopper\\storage\\fonts\/open_sans_bold_4b022a0130ea2286b83a6321f7f2cfe7",
+        "800": "open_sans_800_e81a4025def1f11217280f49e7191bd8"
+    },
+    "glyphicons halflings": {
+        "normal": "glyphicons_halflings_normal_448cf7c5a9f8cf5b480d96c9606cc001"
+    }
+}

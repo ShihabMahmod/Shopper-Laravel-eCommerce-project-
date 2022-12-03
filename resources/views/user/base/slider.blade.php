@@ -1,6 +1,10 @@
 <main id="main">
 		<div class="container">
 
+		@php
+		 $data = App\Models\slider::getAll();
+		@endphp
+
 			<!--MAIN SLIDE-->
 			<div class="wrap-main-slide">
 				<div class="slide-carousel owl-carousel style-nav-1" data-items="1" data-loop="1" data-nav="true" data-dots="false">
@@ -13,16 +17,18 @@
 							<a href="#" class="btn-link">Shop Now</a>
 						</div>
 					</div>
+					@foreach($data as $products)
 					<div class="item-slide">
-						<img src="assets/images/main-slider-1-2.jpg" alt="" class="img-slide">
+						<img src="{{asset($products->slider)}}" alt="" class="img-slide">
 						<div class="slide-info slide-2">
-							<h2 class="f-title">Extra 25% Off</h2>
+							<h2 class="f-title">{{$products->title}}</h2>
 							<span class="f-subtitle">On online payments</span>
-							<p class="discount-code">Use Code: #FA6868</p>
+							<p class="discount-code">{{$products->slug}}</p>
 							<h4 class="s-title">Get Free</h4>
 							<p class="s-subtitle">TRansparent Bra Straps</p>
 						</div>
 					</div>
+					@endforeach
 					<div class="item-slide">
 						<img src="assets/images/main-slider-1-3.jpg" alt="" class="img-slide">
 						<div class="slide-info slide-3">

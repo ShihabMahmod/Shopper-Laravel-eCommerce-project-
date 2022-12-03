@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -15,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/chosen.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/color-01.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/userProfile.css')}}">
 </head>
 <body class="home-page home-01 ">
 
@@ -49,10 +51,10 @@
 									<li class="menu-item" ><a title="Register or Login" href="{{url('/user-log-out')}}">Log out</a></li>
 								@endif
 								<li class="menu-item menu-item-has-children parent" >
-									<a title="Dollar (USD)" href="#">{{Session::get('user_email')}}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<a title="Dollar (USD)" href="#">{{Session::get('user_name')}}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu curency" >
 										<li class="menu-item" >
-											<a title="Pound (GBP)" href="#">My Profile</a>
+											<a title="Pound (GBP)" href="{{url('/user-profile')}}">My Profile</a>
 										</li>
 									</ul>
 								</li>
@@ -139,7 +141,6 @@
 								<li class="menu-item"><a href="#" class="link-term">Hot Sale items</a><span class="nav-label hot-label">hot</span></li>
 								<li class="menu-item"><a href="#" class="link-term">Top new items</a><span class="nav-label hot-label">hot</span></li>
 								<li class="menu-item"><a href="#" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
 							</ul>
 						</div>
 					</div>

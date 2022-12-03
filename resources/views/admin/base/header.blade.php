@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{asset('asset/css/select2.css')}}" />
 <link rel="stylesheet" href="{{asset('asset/css/matrix-media.css')}}" />
 <link href="{{asset('asset/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>

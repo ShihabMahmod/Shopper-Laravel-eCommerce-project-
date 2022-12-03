@@ -5,6 +5,7 @@ namespace App\Models\admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\admin\product;
+use App\Models\subCategory;
 
 class category extends Model
 {
@@ -13,6 +14,11 @@ class category extends Model
     public function getData()
     {
         return $this->hasMany(product::class,'category_id','id');
+    }
+
+    public function subCategory()
+    {
+        return $this->hasMany(subCategory::class,'category_id','id');
     }
    
     public $timestemps = false;

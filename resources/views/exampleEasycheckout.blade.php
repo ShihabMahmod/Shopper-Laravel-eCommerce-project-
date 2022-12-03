@@ -1,187 +1,258 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="SSLCommerz">
-    <title>Example - EasyCheckout (Popup) | SSLCommerz</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-</head>
-<body class="bg-light">
+@include('user.base.header')
+<main id="main" class="main-site">
 <div class="container">
-    <div class="py-5 text-center">
-        <h2>EasyCheckout (Popup) - SSLCommerz</h2>
 
-        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. We have provided this
-            sample form for understanding EasyCheckout (Popup) Payment integration with SSLCommerz.</p>
+    <div class="wrap-breadcrumb">
+        <ul>
+            <li class="item-link"><a href="#" class="link">home</a></li>
+            <li class="item-link"><span>login</span></li>
+        </ul>
     </div>
-
-    <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Your cart</span>
-                <span class="badge badge-secondary badge-pill">3</span>
-            </h4>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Product name</h6>
-                        <small class="text-muted">Brief description</small>
-                    </div>
-                    <span class="text-muted">1000</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Second product</h6>
-                        <small class="text-muted">Brief description</small>
-                    </div>
-                    <span class="text-muted">50</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Third item</h6>
-                        <small class="text-muted">Brief description</small>
-                    </div>
-                    <span class="text-muted">150</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (BDT)</span>
-                    <strong>1200 TK</strong>
-                </li>
-            </ul>
+    <div class=" main-content-area">
+        <div class="wrap-address-billing">
+            <h3 class="box-title">Billing Address</h3>
+            <form action="#" method="get" name="frm-billing">
+                <p class="row-in-form">
+                    <label for="fname">first name<span>*</span></label>
+                    <input id="fname" type="text" id="first_name" name="first_name" value="" placeholder="Your name" required>
+                </p>
+                <p class="row-in-form">
+                    <label for="lname">last name<span>*</span></label>
+                    <input id="lname" type="text" id="last_name" name="last_name" value="" placeholder="Your last name">
+                </p>
+                <p class="row-in-form">
+                    <label for="email">Email Addreess:</label>
+                    <input id="email" type="email" id="email" name="email" value="" placeholder="Type your email">
+                </p>
+                <p class="row-in-form">
+                    <label for="phone">Phone number<span>*</span></label>
+                    <input id="phone" type="number" id="phone" name="phone" value="" placeholder="10 digits format">
+                </p>
+                <p class="row-in-form">
+                    <label for="add">Address:</label>
+                    <input id="add" type="text" id="address" name="address" value="" placeholder="Street at apartment number">
+                </p>
+                <p class="row-in-form">
+                    <label for="country">Country<span>*</span></label>
+                    <input id="country" type="text" id="country" name="country" value="" placeholder="United States">
+                </p>
+                <p class="row-in-form">
+                    <label for="zip-code">Postcode / ZIP:</label>
+                    <input id="zip-code" type="number" id="zip_code" name="zip_code" value="" placeholder="Your postal code">
+                </p>
+                <p class="row-in-form">
+                    <label for="city">Town / City<span>*</span></label>
+                    <input id="city" type="text" id="city" name="city" value="" placeholder="City name">
+                </p>
+                <p class="row-in-form fill-wife">
+                    <label class="checkbox-field">
+                        <input name="create-account" id="create-account" value="forever" type="checkbox">
+                        <span>Create an account?</span>
+                    </label>
+                    <label class="checkbox-field">
+                        <input name="different-add" id="different-add" value="forever" type="checkbox">
+                        <span>Ship to a different address?</span>
+                    </label>
+                </p>
+            </form>
         </div>
-        <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Billing address</h4>
-            <form method="POST" class="needs-validation" novalidate>
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <label for="firstName">Full name</label>
-                        <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder=""
-                               value="John Doe" required>
-                        <div class="invalid-feedback">
-                            Valid customer name is required.
-                        </div>
-                    </div>
+        <div class="summary summary-checkout">
+            <div class="summary-item payment-method">
+                <h4 class="title-box">Payment Method</h4>
+                <p class="summary-info"><span class="title">Check / Money order</span></p>
+                <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
+                <div class="choose-payment-methods">
+                    <label class="payment-method">
+                        <input name="payment-method" id="payment-method-bank" value="bank" type="radio">
+                        <span>Direct Bank Transder</span>
+                        <span class="payment-desc">But the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</span>
+                    </label>
+                    <label class="payment-method">
+                        <input name="payment-method" id="payment-method-visa" value="visa" type="radio">
+                        <span>visa</span>
+                        <span class="payment-desc">There are many variations of passages of Lorem Ipsum available</span>
+                    </label>
+                    <label class="payment-method">
+                        <input name="payment-method" id="payment-method-paypal" value="paypal" type="radio">
+                        <span>Paypal</span>
+                        <span class="payment-desc">You can pay with your credit</span>
+                        <span class="payment-desc">card if you don't have a paypal account</span>
+                    </label>
                 </div>
-
-                <div class="mb-3">
-                    <label for="mobile">Mobile</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">+88</span>
-                        </div>
-                        <input type="text" name="customer_mobile" class="form-control" id="mobile" placeholder="Mobile"
-                               value="01711xxxxxx" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your Mobile number is required.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" name="customer_email" class="form-control" id="email"
-                           placeholder="you@example.com" value="you@example.com" required>
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St"
-                           value="93 B, New Eskaton Road" required>
-                    <div class="invalid-feedback">
-                        Please enter your shipping address.
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
-
-                <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="country">Country</label>
-                        <select class="custom-select d-block w-100" id="country" required>
-                            <option value="">Choose...</option>
-                            <option value="Bangladesh">Bangladesh</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
-                        <select class="custom-select d-block w-100" id="state" required>
-                            <option value="">Choose...</option>
-                            <option value="Dhaka">Dhaka</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required>
-                        <div class="invalid-feedback">
-                            Zip code required.
-                        </div>
-                    </div>
-                </div>
-                <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <input type="hidden" value="1200" name="amount" id="total_amount" required/>
-                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
-                        address</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                </div>
-                <hr class="mb-4">
+                <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">$100.00</span></p>
                 <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
                         token="if you have any token validation"
                         postdata="your javascript arrays or objects which requires in backend"
                         order="If you already have the transaction generated for current order"
                         endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
                 </button>
-            </form>
+            </div>
+            <div class="summary-item shipping-method">
+                <h4 class="title-box f-title">Total Amount</h4>
+                <p class="summary-info"><span class="title">৳ 5000</span></p>
+                <p class="summary-info"><span class="title">Shipping : free</span></p>
+                <h4 class="title-box">Discount Codes</h4>
+                <p class="row-in-form">
+                    <label for="coupon-code">Enter Your Coupon code:</label>
+                    <input id="coupon-code" type="text" name="coupon-code" value="" placeholder="">	
+                </p>
+                <a href="#" class="btn btn-small">Apply</a>
+            </div>
         </div>
-    </div>
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2019 Company Name</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-    </footer>
-</div>
+        <div class="wrap-show-advance-info-box style-1 box-in-site">
+            <h3 class="title-box">Most Viewed Products</h3>
+            <div class="wrap-products">
+                <div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item new-label">new</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_17.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item sale-label">sale</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_15.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item new-label">new</span>
+                                <span class="flash-item sale-label">sale</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_01.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item bestseller-label">Bestseller</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_21.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_03.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item sale-label">sale</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><ins><p class="product-price">$168.00</p></ins> <del><p class="product-price">$250.00</p></del></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_04.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item new-label">new</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                        </div>
+                    </div>
+
+                    <div class="product product-style-2 equal-elem ">
+                        <div class="product-thumnail">
+                            <a href="#" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                                <figure><img src="assets/images/products/digital_05.jpg" width="214" height="214" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
+                            </a>
+                            <div class="group-flash">
+                                <span class="flash-item bestseller-label">Bestseller</span>
+                            </div>
+                            <div class="wrap-btn">
+                                <a href="#" class="function-link">quick view</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
+                            <div class="wrap-price"><span class="product-price">$250.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--End wrap-products-->
+        </div>
+
+    </div><!--end main content area-->
+</div><!--end container-->
+</main>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -215,4 +286,4 @@
         window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
     })(window, document);
 </script>
-</html>
+@include('user.base.footer');

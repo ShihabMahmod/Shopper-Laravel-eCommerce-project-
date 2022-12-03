@@ -36,10 +36,14 @@ class productController extends Controller
     {
         $product = new product;
 
-        $color = $req->input('product_color');
-        $product_color = implode(",",$color);
+        
         $size  = $req->input('product_size');
         $product_size = implode(",",$size);
+        $color = $req->input('product_color');
+        $product_color = implode(",",$color);
+
+
+        
 
         $product->product_name = $req->input('product_name');
         $product->product_reguler_price = $req->input('product_reguler_price');
@@ -51,8 +55,8 @@ class productController extends Controller
         $product->category_id =$req->input('category_id');
         $product->sub_category_id = $req->input('sub_category_id');
         $product->brand_id = $req->input('brand_id');
-        $product->product_color = json_encode($product_color);
-        $product->product_size = json_encode($product_size);
+        $product->product_color = $product_color;
+        $product->product_size = $product_size;
         $product->featured = $req->input('featured');
 
         $images=array();

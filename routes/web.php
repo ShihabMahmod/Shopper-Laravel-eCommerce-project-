@@ -9,6 +9,7 @@ use App\Http\Controllers\user\contactController;
 use App\Http\Controllers\user\aboutController;
 use App\Http\Controllers\user\userDataController;
 use App\Http\Controllers\user\wishlistController;
+use App\Http\Controllers\commentController;
 
 use App\Http\Controllers\SslCommerzPaymentController;
 
@@ -20,6 +21,11 @@ use App\Http\Controllers\admin\productController;
 use App\Http\Controllers\admin\subCategoryController;
 use App\Http\Controllers\admin\sizesController;
 use App\Http\Controllers\admin\colorController;
+use App\Http\Controllers\SliderController;
+
+
+use App\Http\Controllers\orderController;
+
 
 
 /*
@@ -38,7 +44,7 @@ use App\Http\Controllers\admin\colorController;
 Route::get('/',[homeController::class,'home']);
 Route::get('/shop',[shopController::class,'shop']);
 Route::get('/cart',[cartController::class,'cart']);
-
+Route::get('/checkout',[checkouttController::class,'checkout']);
 Route::get('/contact',[contactController::class,'contact']);
 Route::get('/about',[aboutController::class,'about']);
 Route::get('/login',[userDataController::class,'login']);
@@ -50,6 +56,8 @@ Route::post('/create-account',[userDataController::class,'createAccount']);
 Route::group(['middleware'=>['userAuthentication']],function(){
 
     Route::get('/user-log-out',[userDataController::class,'userLogOut']);
+    Route::get('/user-profile',[userDataController::class,'userProfile']);
+    Route::post('/user-image-update/{id}',[userDataController::class,'userImageUpdate']);
 
     Route::post('/add-cart/{id}',[cartController::class,'addCart']);
     Route::get('/delete-from-cart/{id}',[cartController::class,'deleteFormCart']);
@@ -64,10 +72,21 @@ Route::group(['middleware'=>['userAuthentication']],function(){
     Route::post('/add-to-cart-from-wishlist/{id}',[shopController::class,'addToCartFromWishlist']);
 
     Route::get('/success',[checkouttController::class,'success']);
+
+    Route::post('/shipping-info-save',[checkouttController::class,'shippingInfoSave']);
+
+    Route::post('/comment-submited/{id}',[commentController::class,'commentSubmited']);
+
+   
     
     
 });
 Route::get('/product-details/{id}',[homeController::class,'productDetails']);
+
+Route::get('/product-by-category/{id}',[shopController::class,'productByCategory']);
+Route::get('/product-by-sub-category/{id}',[shopController::class,'productBySubCategory']);
+
+Route::get('/product-by-brand/{id}',[shopController::class,'productByBrand']);
 
 
 
@@ -75,7 +94,7 @@ Route::get('/product-details/{id}',[homeController::class,'productDetails']);
 
 //....................... SSLCOMMERZ Start.................//
 
-Route::get('/checkout', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/check', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
@@ -104,6 +123,7 @@ Route::group(['middleware'=>['authenticCheck']],function(){
     Route::get('/category',[categoryController::class,'category']);
     Route::post('/add-category',[categoryController::class,'addCategory']);
     Route::get('/delete-category/{id}',[categoryController::class,'deleteCategory']);
+    Route::put('/active-category/{id}',[categoryController::class,'activeCategory']);
 
     Route::get('/sub-category',[subCategoryController::class,'subCategory']);
     Route::post('/add-sub-category',[subCategoryController::class,'addSubCategory']);
@@ -126,6 +146,14 @@ Route::group(['middleware'=>['authenticCheck']],function(){
 
     Route::get('/color',[colorController::class,'color']);
     Route::post('/add-color',[colorController::class,'addColor']);
+
+    Route::get('/order',[orderController::class,'order']);
+    Route::put('/update-order-status/{id}',[orderController::class,'updateOrderStatus']);
+    Route::get('/order-details/{user_id}',[orderController::class,'orderDetails']);
+    Route::get('/invoice-generate/{user_id}',[orderController::class,'invoiceGenerate']);
+
+    Route::get('/slider',[SliderController::class,'slider']);
+    Route::post('/add-slider',[SliderController::class,'addSlider']);
 
     
 });

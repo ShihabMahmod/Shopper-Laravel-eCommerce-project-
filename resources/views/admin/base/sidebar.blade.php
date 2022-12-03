@@ -11,13 +11,9 @@
     <li><a href="/product"><i class="icon icon-th"></i> <span>Add Product</span></a></li>
     <li><a href="{{url('sizes')}}"><i class="icon icon-fullscreen"></i> <span>Add Sizes</span></a></li>
     <li><a href="{{url('/color')}}"><i class="icon icon-fullscreen"></i> <span>Add Colors</span></a></li>
-    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
-      <ul>
-        <li><a href="form-common.html">Basic Form</a></li>
-        <li><a href="form-validation.html">Form with Validation</a></li>
-        <li><a href="form-wizard.html">Form with Wizard</a></li>
-      </ul>
-    </li>
+    <li><a href="{{url('/order')}}"><i class="icon icon-fullscreen"></i> <span>Orders</span></a></li>
+    <li><a href="{{url('/slider')}}"><i class="icon icon-fullscreen"></i> <span>Slider</span></a></li>
+  
     <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
     <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
     <li class="submenu active"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>

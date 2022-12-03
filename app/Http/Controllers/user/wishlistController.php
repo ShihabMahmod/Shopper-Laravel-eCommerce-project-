@@ -30,11 +30,11 @@ class wishlistController extends Controller
 
         $wishlistProduct = $product::find($id);
         
-        $wishlist->user_email = $user_email;
-        $wishlist->product_name = $wishlistProduct->product_name;
-        $wishlist->product_price = $wishlistProduct->product_reguler_price;
-        $wishlist->product_image = $wishlistProduct->product_image;
-        $wishlist->product_id  = $wishlistProduct->id;
+        $wishlist->user_email     = $user_email;
+        $wishlist->product_name   = $wishlistProduct->product_name;
+        $wishlist->product_price  = $wishlistProduct->product_reguler_price;
+        $wishlist->product_image  = $wishlistProduct->product_image;
+        $wishlist->product_id     = $wishlistProduct->id;
 
         $wishlist->save();
 

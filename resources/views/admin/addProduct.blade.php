@@ -66,6 +66,8 @@
               <label class="control-label">Product Sub-Category :</label>
               <div class="controls">
                   <select name="sub_category_id">
+                    <option>Select Sub Category</option>
+                    <option value="">No Sub-Category</option>
                     @foreach($subCategoryList as $subCategoryList)
                     <option value="{{$subCategoryList->id}}" >{{$subCategoryList->sub_category_name}}</option>
                     @endforeach

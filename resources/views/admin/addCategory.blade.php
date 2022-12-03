@@ -50,7 +50,15 @@
               <tr class="even gradeA">
                   <td>{{$categories->id}}</td>
                   <td>{{$categories->category_name}}</td>
-                  <td>{{$categories->category_status}}</td>
+                  @if($categories->category_status == 0)
+                    <td>
+                      <a href="{{url('/de-active-category/'.$categories->id)}}" class="btn btn-mini btn-success">Active</a>
+                    </td>
+                  @else
+                    <td>
+                      <a href="{{url('/active-category/'.$categories->id)}}" class="btn btn-mini btn-danger">De active</a>
+                    </td>
+                  @endif
                   <td>
                     <a class="btn btn-mini btn-danger" href="/delete-category/{{$categories->id}}">Delete</a>
                   </td>
